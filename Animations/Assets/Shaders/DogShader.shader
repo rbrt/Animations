@@ -11,6 +11,7 @@
 		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
 		LOD 200
 		Blend SrcAlpha OneMinusSrcAlpha
+		Cull Off
 
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
@@ -34,26 +35,28 @@
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 			// Albedo comes from a texture tinted by color
 			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
-
+			fixed4 wireframeColor = tex2D(_WireframeTex, IN.uv_MainTex);
 			if (_WireframeOn > .5){
-				c = tex2D(_WireframeTex, IN.uv_MainTex);
-				if (distance(c.rgb, half3(0,0,0)) > 1){
-					c.a = 0;
+				if (distance(wireframeColor.rgb, half3(0,0,0)) > 1){
+					wireframeColor.a = 0;
 				}
 				else{
-					o.Albedo = half3(0,1,0);
-					c.a = 1;
+					wireframeColor.rb = 0;
+					wireframeColor.ga = 1;
 				}
 			}
-			else{
-				o.Albedo = c.rgb;
-				c.a = 1;
+			else {
+				c.a = 1 - _WireframeOn;
 			}
+
+			fixed4 finalColor = lerp(c, wireframeColor, _WireframeOn);
+
+			o.Albedo = finalColor;
 
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
-			o.Alpha = c.a;
+			o.Alpha = finalColor.a;
 		}
 		ENDCG
 	}

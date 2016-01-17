@@ -6,12 +6,76 @@ ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Armature
+    100004: Base
+    100006: Chest
+    100008: Chest_001
+    100010: Collar_l
+    100012: Collar_r
+    100014: Cube
+    100016: Ear_l
+    100018: Ear_r
+    100020: Foot_l
+    100022: Foot_r
+    100024: Head
+    100026: LowerArm_l
+    100028: LowerArm_r
+    100030: LowerLeg_l
+    100032: LowerLeg_r
+    100034: Neck
+    100036: Pelvis
+    100038: Root
+    100040: Stomach
+    100042: TailBase
+    100044: TailMid
+    100046: TailTip
+    100048: Thigh_l
+    100050: Thigh_r
+    100052: Toe_l
+    100054: Toe_r
+    100056: UpperArm_l
+    100058: UpperArm_r
     400000: //RootNode
+    400002: Armature
+    400004: Base
+    400006: Chest
+    400008: Chest_001
+    400010: Collar_l
+    400012: Collar_r
+    400014: Cube
+    400016: Ear_l
+    400018: Ear_r
+    400020: Foot_l
+    400022: Foot_r
+    400024: Head
+    400026: LowerArm_l
+    400028: LowerArm_r
+    400030: LowerLeg_l
+    400032: LowerLeg_r
+    400034: Neck
+    400036: Pelvis
+    400038: Root
+    400040: Stomach
+    400042: TailBase
+    400044: TailMid
+    400046: TailTip
+    400048: Thigh_l
+    400050: Thigh_r
+    400052: Toe_l
+    400054: Toe_r
+    400056: UpperArm_l
+    400058: UpperArm_r
     2300000: //RootNode
     3300000: //RootNode
     4300000: Cube
-    7400000: Default Take
+    7400000: SitDown
+    7400002: Walk
+    7400004: IdleLook0
+    7400006: IdlePlain
+    7400008: SitUp
+    7400010: SitIdle
     9500000: //RootNode
+    13700000: Cube
   materials:
     importMaterials: 1
     materialName: 0
@@ -31,7 +95,523 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: IdlePlain
+      takeName: IdlePlain
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Base
+        weight: 1
+      - path: Armature/Root/Base/Pelvis
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid/TailTip
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l/Toe_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r/Toe_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Chest_001
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l/LowerArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r/LowerArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: 4
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Base
+        weight: 1
+      - path: Armature/Root/Base/Pelvis
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid/TailTip
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l/Toe_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r/Toe_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Chest_001
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l/LowerArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r/LowerArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: IdleLook0
+      takeName: IdleLook
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Base
+        weight: 1
+      - path: Armature/Root/Base/Pelvis
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid/TailTip
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l/Toe_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r/Toe_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Chest_001
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l/LowerArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r/LowerArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SitDown
+      takeName: SitDown
+      firstFrame: 0
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Base
+        weight: 1
+      - path: Armature/Root/Base/Pelvis
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid/TailTip
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l/Toe_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r/Toe_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Chest_001
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l/LowerArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r/LowerArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SitUp
+      takeName: SitUp
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Base
+        weight: 1
+      - path: Armature/Root/Base/Pelvis
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid/TailTip
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l/Toe_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r/Toe_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Chest_001
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l/LowerArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r/LowerArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SitIdle
+      takeName: SitIdle
+      firstFrame: 0
+      lastFrame: 177
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Base
+        weight: 1
+      - path: Armature/Root/Base/Pelvis
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/TailBase/TailMid/TailTip
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_l/LowerLeg_l/Foot_l/Toe_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/Thigh_r/LowerLeg_r/Foot_r/Toe_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Chest_001
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l/LowerArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r/LowerArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Ear_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
