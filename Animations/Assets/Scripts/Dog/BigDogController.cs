@@ -12,12 +12,15 @@ public class BigDogController : MonoBehaviour {
 
     [SerializeField] protected Animator dogAnimator;
     [SerializeField] protected Renderer dogRenderer;
+    [SerializeField] protected bool affectColor;
 
     void Start(){
         dogAnimator.SetTrigger("Sit");
 
+        if (affectColor){
+            StartCoroutine(TransitionColours(Random.Range(2f, 5f)));
+        }
 
-        StartCoroutine(TransitionColours(Random.Range(2f, 5f)));
         dogRenderer.material = new Material(dogRenderer.material);
     }
 

@@ -19,7 +19,11 @@ public class DogController : MonoBehaviour {
                   glitchTrigger = "_RuinMesh",
                   wireframeTrigger = "_WireframeOn";
 
-    bool walking = false,
+    bool walkingForward = false,
+         walkingBackward = false,
+         turningLeft = false,
+         turningRight = false,
+         walking = false,
          sitting = false,
          glitching = false;
 
@@ -37,14 +41,22 @@ public class DogController : MonoBehaviour {
     void Update(){
         if (Input.GetKeyDown(KeyCode.W)){
             StartWalking();
+            walkingForward = true;
+            walkingBackward = false;
         }
         else if (Input.GetKeyDown(KeyCode.S)){
             StartWalking();
+            walkingForward = false;
+            walkingBackward = true;
         }
         else if (Input.GetKeyDown(KeyCode.A)){
+            turningLeft = true;
+            turningRight = false;
             StartWalking();
         }
         else if (Input.GetKeyDown(KeyCode.D)){
+            turningLeft = false;
+            turningRight = true;
             StartWalking();
         }
         else if (Input.GetKeyDown(KeyCode.D)){
@@ -59,15 +71,19 @@ public class DogController : MonoBehaviour {
         }
 
         if (Input.GetKeyUp(KeyCode.W)){
+            walkingForward = false;
             StopWalking();
         }
         else if (Input.GetKeyUp(KeyCode.S)){
+            walkingBackward = false;
             StopWalking();
         }
         else if (Input.GetKeyUp(KeyCode.A)){
+            turningLeft = false;
             StopWalking();
         }
         else if (Input.GetKeyUp(KeyCode.D)){
+            turningRight = false;
             StopWalking();
         }
 
@@ -75,17 +91,27 @@ public class DogController : MonoBehaviour {
             sitting = false;
         }
 
-        dogAnimator.SetBool(walkBool, walking);
-        dogAnimator.SetBool(sitBool, sitting);
-
         if (lastStartTime != 0 && Time.time - lastStartTime >= randomWait){
             dogAnimator.SetTrigger(lookTrigger);
             lastStartTime = Time.time;
         }
 
-        if (walking){
+        if (walkingForward){
             transform.position = transform.position - transform.forward * forwardSpeed * Time.deltaTime;
         }
+        else if (walkingBackward){
+            transform.position = transform.position + transform.forward * forwardSpeed * Time.deltaTime;
+        }
+
+        if (turningLeft){
+            transform.Rotate(0, -Time.deltaTime * 100, 0);
+        }
+        else if (turningRight){
+            transform.Rotate(0, Time.deltaTime * 100, 0);
+        }
+
+        dogAnimator.SetBool(walkBool, walking);
+        dogAnimator.SetBool(sitBool, sitting);
     }
 
     void AffectGlitch(){
@@ -115,7 +141,7 @@ public class DogController : MonoBehaviour {
     }
 
     void StopWalking(){
-        walking = false;
+        walking = turningLeft || turningRight || walkingForward || walkingBackward;
         lastStartTime = Time.time;
         randomWait = Random.Range(2,6);
     }
@@ -125,6 +151,11 @@ public class DogController : MonoBehaviour {
             //yield return this.StartSafeCoroutine(WireframeGlitch());
 
             float choice = Random.Range(0, 1000);
+
+            yield return this.StartSafeCoroutine(StallAnimator());
+            yield return this.StartSafeCoroutine(EnableShaderGlitch(.05f,.075f, .05f, .075f, 10));
+            yield return this.StartSafeCoroutine(WireframeGlitch());
+            yield return this.StartSafeCoroutine(EnableShaderGlitch(3f, 5f, 0f, 0f, 1));
 
             if (choice > 250){
                 yield return this.StartSafeCoroutine(EnableShaderGlitch(3f, 5f, 0f, 0f, 1));
@@ -152,15 +183,13 @@ public class DogController : MonoBehaviour {
     }
 
     IEnumerator WireframeGlitch(){
-        for (int steps = 0; steps < 3; steps++){
-            for (int i = 0; i < 10; i++){
-                dogRenderer.material.SetFloat(wireframeTrigger, 1f);
-                yield return new WaitForSeconds(Random.Range(.025f,.2f - i * .005f));
-                dogRenderer.material.SetFloat(wireframeTrigger, 0f);
-                yield return new WaitForSeconds(Random.Range(.025f,.2f));
-            }
-            yield return new WaitForSeconds(Random.Range(1,3));
+        for (int i = 0; i < 10; i++){
+            dogRenderer.material.SetFloat(wireframeTrigger, 1f);
+            yield return new WaitForSeconds(Random.Range(.025f,.2f - i * .005f));
+            dogRenderer.material.SetFloat(wireframeTrigger, 0f);
+            yield return new WaitForSeconds(Random.Range(.025f,.2f));
         }
+        yield return new WaitForSeconds(Random.Range(.5f, 1f));
     }
 
     IEnumerator StallAnimator(){

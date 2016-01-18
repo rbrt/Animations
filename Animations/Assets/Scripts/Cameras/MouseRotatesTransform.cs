@@ -36,6 +36,11 @@ public class MouseRotatesTransform : MonoBehaviour {
             verticalRotation = 0;
         }
 
+        float diff = Input.GetAxis("Mouse ScrollWheel") * 3;
+        var temp = targetCamera.localPosition;
+        temp.z = Mathf.Clamp(temp.z + diff, -15, -1);
+        targetCamera.localPosition = temp;
+
         targetCamera.LookAt(transform);
     }
 

@@ -14,7 +14,7 @@
 
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard
+		#pragma surface surf Standard fullforwardshadows keepalpha
 		#pragma vertex vert
 
 		sampler2D _MainTex;
@@ -36,7 +36,7 @@
 		  UNITY_INITIALIZE_OUTPUT(Input, o);
 		  if (_RuinMesh > .5){
 			  half4 deform = v.vertex;
-			  fixed3 offset = cross(fixed3(sin(v.vertex.x + _Time.x), sin(v.vertex.y + _Time.y), sin(v.vertex.z + _Time.z)), v.normal);
+			  float3 offset = cross(fixed3(sin(v.vertex.x + _Time.x), sin(v.vertex.y + _Time.y), sin(v.vertex.z + _Time.z)), v.normal);
 			  deform.xy = rotate(v.vertex.xy);
 			  deform.xyz += offset * (sin(_Time.z * 3) + 1) * 3;
 
@@ -45,9 +45,7 @@
 		  fixed4 vertex = mul(UNITY_MATRIX_MVP,v.vertex);
 
 		  o.vertex = vertex;
-
 		  o.normal = v.normal;
-
       	}
 
 		fixed4 _Color;
