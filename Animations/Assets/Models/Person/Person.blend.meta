@@ -1,0 +1,290 @@
+fileFormatVersion: 2
+guid: ae3e6bca5d2944cc7b75cd98bab718f1
+timeCreated: 1453176431
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Base
+    100004: Chest
+    100006: Collar_l
+    100008: Collar_r
+    100010: Cube
+    100012: Foot_l
+    100014: Foot_r
+    100016: Head
+    100018: LowerArm_l
+    100020: LowerArm_r
+    100022: LowerLeg_l
+    100024: LowerLeg_r
+    100026: MouthExtension
+    100028: MouthLower
+    100030: MouthUpper
+    100032: Neck
+    100034: Pelvis
+    100036: //RootNode
+    100038: Root
+    100040: Stomach
+    100042: Toe_l
+    100044: Toe_r
+    100046: UpperArm_l
+    100048: UpperArm_r
+    100050: UpperLeg_l
+    100052: UpperLeg_r
+    400000: Armature
+    400002: Base
+    400004: Chest
+    400006: Collar_l
+    400008: Collar_r
+    400010: Cube
+    400012: Foot_l
+    400014: Foot_r
+    400016: Head
+    400018: LowerArm_l
+    400020: LowerArm_r
+    400022: LowerLeg_l
+    400024: LowerLeg_r
+    400026: MouthExtension
+    400028: MouthLower
+    400030: MouthUpper
+    400032: Neck
+    400034: Pelvis
+    400036: //RootNode
+    400038: Root
+    400040: Stomach
+    400042: Toe_l
+    400044: Toe_r
+    400046: UpperArm_l
+    400048: UpperArm_r
+    400050: UpperLeg_l
+    400052: UpperLeg_r
+    4300000: Cube
+    7400000: Default Take
+    7400002: TestWalk
+    9500000: //RootNode
+    13700000: Cube
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 249
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Base
+        weight: 1
+      - path: Armature/Root/Base/Pelvis
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_l/LowerLeg_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_l/LowerLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_l/LowerLeg_l/Foot_l/Toe_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_r/LowerLeg_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_r/LowerLeg_r/Foot_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_r/LowerLeg_r/Foot_r/Toe_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l/LowerArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r/LowerArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/MouthExtension
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/MouthExtension/MouthLower
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/MouthExtension/MouthUpper
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: TestWalk
+      takeName: TestWalk
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Base
+        weight: 1
+      - path: Armature/Root/Base/Pelvis
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_l/LowerLeg_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_l/LowerLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_l/LowerLeg_l/Foot_l/Toe_l
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_r/LowerLeg_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_r/LowerLeg_r/Foot_r
+        weight: 1
+      - path: Armature/Root/Base/Pelvis/UpperLeg_r/LowerLeg_r/Foot_r/Toe_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_l/UpperArm_l/LowerArm_l
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Collar_r/UpperArm_r/LowerArm_r
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/MouthExtension
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/MouthExtension/MouthLower
+        weight: 1
+      - path: Armature/Root/Base/Stomach/Chest/Neck/MouthExtension/MouthUpper
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
