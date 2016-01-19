@@ -36,9 +36,6 @@
 			if (_EffectOn > .5){
 				if (_TargetPosition.z < worldPos.z){
 					worldPos.xyz = _TargetPosition.xyz;
-					/*v.vertex.z = _TargetPosition.y * .8;
-					v.vertex.x = _TargetPosition.x;
-					v.vertex.y = _TargetPosition.z;*/
 				}
 			}
 
@@ -47,7 +44,6 @@
       	}
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
-			// Albedo comes from a texture tinted by color
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
 			o.Alpha = c.a;
