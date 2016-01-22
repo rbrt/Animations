@@ -3,7 +3,7 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
-		_Crush ("Crush", Range(0, 300)) = 300
+		_Crush ("Crush", Range(0, 400)) = 400
 		_Shift ("Shift", Range(0,360)) = 0
 	}
 	SubShader
@@ -63,7 +63,7 @@
 			}
 
 			float3 shift(float3 color, float degrees){
-				float3x3 shiftMatrix = generateRotation(degrees	);
+				float3x3 shiftMatrix = generateRotation(degrees);
 				float3 newColor = color;
 
 				newColor.r = color.r * shiftMatrix[0][0] + color.g * shiftMatrix[0][1] + color.b * shiftMatrix[0][2];
