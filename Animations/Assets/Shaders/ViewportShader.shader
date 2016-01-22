@@ -3,7 +3,7 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
-		_Crush ("Crush", Range(0, 400)) = 400
+		_Crush ("Crush", Range(0, 600)) = 600
 		_Shift ("Shift", Range(0,360)) = 0
 	}
 	SubShader
