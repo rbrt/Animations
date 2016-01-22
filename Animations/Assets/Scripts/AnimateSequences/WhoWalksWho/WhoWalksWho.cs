@@ -18,7 +18,8 @@ public class WhoWalksWho : MonoBehaviour {
                                          collarTarget,
                                          leashTarget,
                                          collar,
-                                         leash;
+                                         leash,
+										 ground;
 
     Vector3 personOriginal,
             dogOriginal,
@@ -35,8 +36,9 @@ public class WhoWalksWho : MonoBehaviour {
     static string dogWalkBool = "BiPedal",
                   personCrawlBool = "Crawl";
 
-    float switchTime = 2,
-          switchAnimationTime = .5f;
+    float switchTime = 3,
+          switchAnimationTime = .5f,
+		  groundMoveSpeed = 10;
 
     void Awake(){
         dogTransform = dogAnimator.transform;
@@ -54,8 +56,13 @@ public class WhoWalksWho : MonoBehaviour {
         this.StartSafeCoroutine(SwitchRoles());
     }
 
+	void Update(){
+		ground.position = ground.position + ground.forward * Time.deltaTime * groundMoveSpeed;	
+	}
+
 
     IEnumerator SwitchRoles(){
+		yield return new WaitForSeconds(1);
         while (true){
             var dog = dogAnimator.GetBool(dogWalkBool);
             dogAnimator.SetBool(dogWalkBool, !dog);
