@@ -35,7 +35,6 @@
 			};
 
 			sampler2D _MainTex;
-			sampler2D _CameraDepthTexture;
 			float4 _MainTex_ST;
 			float _Crush;
 			float _Shift;
@@ -144,7 +143,6 @@
 				v2f o;
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				UNITY_TRANSFER_DEPTH(o.depth);
 				return o;
 			}
 
@@ -160,11 +158,7 @@
 
 				col = repeat(col, i.uv);
 
-				col.xyz = lerp(col, paletteConversion(col.r + col.g + col.b + _Time.y), _PaletteSwap + i.uv.y * .8);
-
-				//col.xyz = i.depth.x / i.depth.y;
-				float depthValue =  Linear01Depth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.uv)).x);
-				col.xyz = depthValue;
+				col.xyz = lerp(col, paletteConversion(col.r + col.g + col.b + _Time.y), _PaletteSwap);
 
 				return col;
 			}
