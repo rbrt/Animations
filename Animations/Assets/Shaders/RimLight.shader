@@ -45,7 +45,7 @@ Shader "RimLight"
 
 				fixed4 colorA = 0;
 
-				o.color = _Color * (angle + (sin(_Time.z) + 2.3) / 4);
+				o.color = _Color * (angle + 2.3) / 4;
 				return o;
 			}
 

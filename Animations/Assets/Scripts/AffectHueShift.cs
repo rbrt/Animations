@@ -20,7 +20,7 @@ public class AffectHueShift : MonoBehaviour {
         targetRenderer = GetComponent<Renderer>();
         targetRenderer.material = new Material(targetRenderer.material);
         this.StartSafeCoroutine(Shift());
-        this.StartSafeCoroutine(Crush());
+        //this.StartSafeCoroutine(Crush());
     }
 
     IEnumerator Shift(){
