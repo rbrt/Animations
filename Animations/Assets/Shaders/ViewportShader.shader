@@ -1,11 +1,11 @@
-﻿Shader "SubstandardShader"
+﻿Shader "Unlit/ViewportShader"
 {
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_Crush ("Crush", Range(0, 600)) = 600
-		_Shift ("HueShift", Range(0,360)) = 0
-		_Repeat ("Repeat", Range(0,100)) = 0
+		_Shift ("Shift", Range(0,360)) = 0
+		_Repeat ("Repeat", Range(1,100)) = 1
 		_RepeatTest ("RepeatTest", Color) = (1,1,1,1)
 		_PaletteSwap ("PaletteSwap", Range(0,1)) = 0
 		_Rotation ("Rotation", Range(0,.5)) = 0
@@ -30,7 +30,6 @@
 
 			struct v2f {
 				float2 uv : TEXCOORD0;
-				float2 depth : TEXCOORD1;
 				float4 vertex : SV_POSITION;
 			};
 
@@ -95,7 +94,7 @@
 					float2 centeredCoords = float2((uv.x * 2.0 - 1.0), (uv.y * 2.0 - 1.0));
 					float4 temp = col;
 
-					for (float iter = 0; iter < _Repeat / 100.0; iter += .01){
+					for (float iter = 0; iter < .19; iter += .01){
 						float2 newCoords = uv;
 
 						if (distance(temp, float4(0,0,0,0)) < .5){

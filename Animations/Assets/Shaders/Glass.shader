@@ -9,7 +9,7 @@
 		LOD 200
 
 		CGPROGRAM
-		#pragma surface surf Standard fullforwardshadows alpha:fade
+		#pragma surface surf Standard fullforwardshadows keepAlpha
 		#pragma vertex vert
 
 		fixed4 _Color;
@@ -38,7 +38,7 @@
 
 			float4 projVert = mul(UNITY_MATRIX_MVP, IN.pos);
 
-			if (IN.pos.z < _Fill - 1 + sin(projVert.x +_Time.w ) * .05){
+			if (IN.pos.z < _Fill - 1 + sin(projVert.x +_Time.w *2) * .5){
 				if (IN.pos.w < 1){
 					o.Albedo = _FillColor.rgb;
 					o.Alpha = _FillColor.a;
