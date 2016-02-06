@@ -3,13 +3,15 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
+		_Dissolve ("Texture", 2D) = "white" {}
 		_Crush ("Crush", Range(0, 600)) = 600
 		_Shift ("HueShift", Range(0,360)) = 0
 		_Repeat ("Repeat", Range(0,100)) = 0
 		_RepeatTest ("RepeatTest", Color) = (1,1,1,1)
 		_PaletteSwap ("PaletteSwap", Range(0,1)) = 0
-		_Rotation ("Rotation", Range(0,.5)) = 0
+		_Rotation ("Rotation", Range(-.5,.5)) = 0
 		_Chroma ("Chromatic", Range(0, 10)) = 0
+		_DissolveThreshold("DissolveThreshold", Range(0,1)) = 0
 	}
 	SubShader
 	{
@@ -38,7 +40,7 @@
 			};
 
 			sampler2D _MainTex;
-			sampler2D _CameraDepthTexture;
+			sampler2D _Dissolve;
 			float4 _MainTex_ST;
 			float _Crush;
 			float _Shift;
@@ -47,6 +49,7 @@
 			float _PaletteSwap;
 			float _Rotation;
 			float _Chroma;
+			float _DissolveThreshold;
 
 			float3x3 generateRotation(float degrees){
 				float3x3 newMatrix = float3x3(1,0,0, 0,1,0, 0,0,1);
@@ -97,9 +100,11 @@
 
 			float3 aberration(float2 uv, float3 color){
 				half2 newCoords = uv + half2(_MainTex_TexelSize.x, _MainTex_TexelSize.y) * _Chroma;
-				half2 newCoords1 = uv - half2(_MainTex_TexelSize.x, _MainTex_TexelSize.y) * _Chroma;
+				half3 newColor = tex2D(_MainTex, uv);
+
+				half2 newCoords1 = uv + half2(_MainTex_TexelSize.x, _MainTex_TexelSize.y) * _Chroma;
 				half2 newCoords2 = uv + half2(-_MainTex_TexelSize.x, -_MainTex_TexelSize.y) * _Chroma;
-				half3 newColor = tex2D(_MainTex, newCoords);
+
 				half3 newColor1 = tex2D(_MainTex, newCoords1);
 				half3 newColor2 = tex2D(_MainTex, newCoords2);
 				return float3(newColor.r, newColor2.g, newColor1.b);
@@ -127,6 +132,42 @@
 					col = lerp(col, temp, _Repeat / 100);
 				}
 				return col;
+			}
+
+			fixed4 dissolve(fixed4 c, fixed2 uv){
+				float val = tex2D(_Dissolve, uv).rgb - _DissolveThreshold;
+				fixed3 testColor = shift(c.rgb, _Shift + 70);
+
+				if(val <= -0.02){
+					return c;
+				}
+	            if (val <= 0) {
+	                val += 0.02;
+	                c.rgb = testColor;
+	                float a = lerp(0, c.a, 50*val);
+	                c.a = a;
+	                c.rgb *= c.a;
+	                return c;
+	            }
+				else{
+					c.rgb = testColor;
+		            c.rgb *= c.a;
+		            return c;
+				}
+			}
+
+			float dissolveVal(fixed4 c, fixed2 uv){
+				float val = tex2D(_Dissolve, uv).rgb - _DissolveThreshold;
+
+				if(val <= -0.02){
+					return 0;
+				}
+	            if (val <= 0) {
+	                return 50*val;
+	            }
+				else{
+					return 1;
+				}
 			}
 
 			fixed4 swirl(float2 uv, float2 effectParams){
@@ -173,13 +214,17 @@
 					col.xyz = aberration(i.uv, col.xyz);
 				}
 
-				if (distance(col, _RepeatTest) < .75){
-					col = swirl(i.uv, float2(0,0));
+				if (dissolveVal(col, i.uv) > 0){
+					if (distance(col, _RepeatTest) < .75 && _Rotation != 0){
+						col = swirl(i.uv, float2(0,0));
+					}
 				}
 
 				col.xyz = shift(col.xyz, _Shift);
 
 				col = repeat(col, i.uv);
+
+				//col = dissolve(col, i.uv);
 
 				col.xyz = lerp(col, paletteConversion(col.r + col.g + col.b + _Time.y), _PaletteSwap);
 
