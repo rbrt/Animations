@@ -1,14 +1,15 @@
-﻿Shader "Unlit/ViewportShader"
+﻿Shader "SubstandardShader"
 {
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_Crush ("Crush", Range(0, 600)) = 600
-		_Shift ("Shift", Range(0,360)) = 0
-		_Repeat ("Repeat", Range(1,100)) = 1
+		_Shift ("HueShift", Range(0,360)) = 0
+		_Repeat ("Repeat", Range(0,100)) = 0
 		_RepeatTest ("RepeatTest", Color) = (1,1,1,1)
 		_PaletteSwap ("PaletteSwap", Range(0,1)) = 0
 		_Rotation ("Rotation", Range(0,.5)) = 0
+		_Chroma ("Chromatic", Range(0, 10)) = 0
 	}
 	SubShader
 	{
@@ -23,6 +24,8 @@
 
 			#include "UnityCG.cginc"
 
+			uniform float4 _MainTex_TexelSize;
+
 			struct appdata {
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
@@ -30,10 +33,12 @@
 
 			struct v2f {
 				float2 uv : TEXCOORD0;
+				float2 depth : TEXCOORD1;
 				float4 vertex : SV_POSITION;
 			};
 
 			sampler2D _MainTex;
+			sampler2D _CameraDepthTexture;
 			float4 _MainTex_ST;
 			float _Crush;
 			float _Shift;
@@ -41,6 +46,7 @@
 			float4 _RepeatTest;
 			float _PaletteSwap;
 			float _Rotation;
+			float _Chroma;
 
 			float3x3 generateRotation(float degrees){
 				float3x3 newMatrix = float3x3(1,0,0, 0,1,0, 0,0,1);
@@ -89,29 +95,42 @@
 				return palette(t, float3(0.5, 0.5, 0.5), float3(0.5, 0.5, 0.5), float3(2.0, 1.0, 0.0), float3(0.50, 0.20, 0.25));
 			}
 
+			float3 aberration(float2 uv, float3 color){
+				half2 newCoords = uv + half2(_MainTex_TexelSize.x, _MainTex_TexelSize.y) * _Chroma;
+				half2 newCoords1 = uv - half2(_MainTex_TexelSize.x, _MainTex_TexelSize.y) * _Chroma;
+				half2 newCoords2 = uv + half2(-_MainTex_TexelSize.x, -_MainTex_TexelSize.y) * _Chroma;
+				half3 newColor = tex2D(_MainTex, newCoords);
+				half3 newColor1 = tex2D(_MainTex, newCoords1);
+				half3 newColor2 = tex2D(_MainTex, newCoords2);
+				return float3(newColor.r, newColor2.g, newColor1.b);
+			}
+
 			fixed4 repeat(fixed4 col, float2 uv){
-				if (distance(col, _RepeatTest) < .75){
+				if (distance(col, _RepeatTest) < 1){
 					float2 centeredCoords = float2((uv.x * 2.0 - 1.0), (uv.y * 2.0 - 1.0));
 					float4 temp = col;
 
-					for (float iter = 0; iter < .19; iter += .01){
-						float2 newCoords = uv;
+					for (float iter = 0; iter < _Repeat / 100; iter += .01){
+						float2 newCoords = uv + half2(_MainTex_TexelSize.x * floor(iter * 1000) / 10,
+													  _MainTex_TexelSize.y * floor(iter * 1000) / 10);
 
 						if (distance(temp, float4(0,0,0,0)) < .5){
-							temp += tex2D(_MainTex, newCoords - newCoords * iter) * .1;
+							temp += tex2D(_MainTex, newCoords) * .1;
 						}
 						else{
-							temp -= tex2D(_MainTex, newCoords + newCoords * iter) * .1;
+							temp -= tex2D(_MainTex, newCoords) * .1;
 						}
 					}
 
-					col = lerp(col, temp, saturate(distance(centeredCoords, float2(0,0) + 1)));
+					temp *= ((_Repeat / 100) + 1);
+
+					col = lerp(col, temp, _Repeat / 100);
 				}
 				return col;
 			}
 
 			fixed4 swirl(float2 uv, float2 effectParams){
-				float theta = _Rotation;
+				float theta = _Rotation + _Time.z * .5;
 
 			    float centerCoordx = (uv.x * 2.0 - 1.0);
 			    float centerCoordy = (uv.y * 2.0 - 1.0);
@@ -127,7 +146,7 @@
 			    float thetamod = degree * len;
 
 				// Input xy controls speed and intensity
-			    float intensity = _Rotation * 20.0;
+			    float intensity = _Rotation * 20.0 + (_Time.z * 2 - 1) * .1;
 
 			    theta += thetamod * ((intensity) / 100.0);
 
@@ -142,12 +161,17 @@
 				v2f o;
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+				UNITY_TRANSFER_DEPTH(o.depth);
 				return o;
 			}
 
 			fixed4 frag (v2f i) : SV_Target {
 				i.uv = floor(i.uv * _Crush) / _Crush;
 				fixed4 col = tex2D(_MainTex, i.uv);
+
+				if (_Chroma > 0){
+					col.xyz = aberration(i.uv, col.xyz);
+				}
 
 				if (distance(col, _RepeatTest) < .75){
 					col = swirl(i.uv, float2(0,0));

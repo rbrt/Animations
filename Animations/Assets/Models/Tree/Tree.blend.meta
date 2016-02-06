@@ -1,15 +1,22 @@
 fileFormatVersion: 2
-guid: 8fc025216617e43a4ae30a73dd44162b
-timeCreated: 1453499374
+guid: fb5a655d6569448abb3548627502a04b
+timeCreated: 1454551974
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Tree
+    100004: Trunk
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Sphere
+    400002: Tree
+    400004: Trunk
+    2300000: Tree
+    2300002: Trunk
+    3300000: Tree
+    3300002: Trunk
+    4300000: Tree
+    4300002: Trunk
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -36,7 +43,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -52,8 +59,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
-    normalImportMode: 1
+    normalSmoothAngle: 89
+    normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
