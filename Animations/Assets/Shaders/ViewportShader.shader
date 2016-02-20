@@ -21,6 +21,8 @@
 		Pass
 		{
 			CGPROGRAM
+// Upgrade NOTE: excluded shader from DX11 and Xbox360 because it uses wrong array syntax (type[size] name)
+#pragma exclude_renderers d3d11 xbox360
 			#pragma vertex vert
 			#pragma fragment frag
 
@@ -94,8 +96,12 @@
 			    return a + b*cos( 6.28318*(c*t+d) );
 			}
 
-			float3 paletteConversion(float t){
+			float3 paletteConversionA(float t){
 				return palette(t, float3(0.5, 0.5, 0.5), float3(0.5, 0.5, 0.5), float3(2.0, 1.0, 0.0), float3(0.50, 0.20, 0.25));
+			}
+
+			float3 paletteConversionB(float t){
+				return palette(t, float3(0.5, 0.5, 0.5), float3(0.5, 0.5, 0.5), float3(1.0, 1.0, 0.0), float3(0.00, 0.10, 0.2));
 			}
 
 			float3 aberration(float2 uv, float3 color){
@@ -170,7 +176,44 @@
 				}
 			}
 
+			#define STEP 6
+
+			float GetVoronoiForPoint(float2 uv){
+				float2[STEP] pos = float2[STEP](float2(.6,.6), float2(.1,.1), float2(.8,.8), float2(.3,.1), float2(.9,.9), float2(.8,.1));
+				float4[STEP] coloring = float4[STEP](float4(1,1,1,1), float4(1,0,1,1), float4(1,1,0,1), float4(0,0,1,1), float4(1,0,0,1), float4(.5,.5,0,1));
+
+				float dist = 100;
+				float returnVal = 1;
+				for (int k = 0; k < STEP; k++){
+					float current = distance(pos[k]  + (_SinTime.w) * float2(sin(pos[k].x),sin(pos[k].y)), uv);
+					if (current < dist){
+						dist = current;
+						returnVal = STEP / k;
+					}
+				}
+
+				return returnVal;
+			}
+
+			float GetVoronoiDistance(float2 uv){
+				float2[STEP] pos = float2[STEP](float2(.6,.6), float2(.1,.1), float2(.8,.8), float2(.3,.1), float2(.9,.9), float2(.8,.1));
+
+				float dist = 1;
+				int index = 0;
+				for (int k = 0; k < STEP; k++){
+					float current = distance(pos[k] + (_SinTime.w) * float2(.1,.1), uv);
+					if (current < dist){
+						dist = current;
+						index = k;
+					}
+				}
+
+				return distance(pos[index], uv);
+			}
+
 			fixed4 swirl(float2 uv, float2 effectParams){
+				float doit = GetVoronoiForPoint(uv);
+
 				float theta = _Rotation + _Time.z * .5;
 
 			    float centerCoordx = (uv.x * 2.0 - 1.0);
@@ -187,14 +230,17 @@
 			    float thetamod = degree * len;
 
 				// Input xy controls speed and intensity
-			    float intensity = _Rotation * 20.0 + (_Time.z * 2 - 1) * .1;
+
+			    float intensity = doit * 20.0 + (_Time.z * 2 - 1) * .1;
 
 			    theta += thetamod * ((intensity) / 100.0);
 
 			    float2 newPoint = float2((cos(theta) * (uv.x * 2.0 - 1.0) + sin(theta) * (uv.y * 2.0 - 1.0) + 1.0)/2.0,
 			                      (-sin(theta) * (uv.x * 2.0 - 1.0) + cos(theta) * (uv.y * 2.0 - 1.0) + 1.0)/2.0);
 
-
+				if (fmod(doit, 1.5) < 1){
+  					return tex2D(_MainTex, uv);
+  				}
 				return tex2D(_MainTex, newPoint);
 			}
 
@@ -220,13 +266,14 @@
 					}
 				}
 
-				col.xyz = shift(col.xyz, _Shift);
+				col.xyz = lerp(col.xyz, shift(col.xyz, _Shift * GetVoronoiForPoint(i.uv)), GetVoronoiDistance(i.uv) * 10);
 
 				col = repeat(col, i.uv);
 
 				//col = dissolve(col, i.uv);
 
-				col.xyz = lerp(col, paletteConversion(col.r + col.g + col.b + _Time.y), _PaletteSwap);
+				col.xyz = lerp(col, paletteConversionB(col.r + col.g + col.b + _Time.y), _PaletteSwap);
+
 
 				return col;
 			}
