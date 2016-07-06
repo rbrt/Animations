@@ -10,8 +10,13 @@ using System.IO;
 
 public class Rotate : MonoBehaviour {
 
+    float speed = 0;
+    void Awake() {
+        speed = Random.Range(-.5f, .5f);
+    }
+
     void Update(){
-        transform.Rotate(0,-1.5f,0);
+        transform.Rotate(0,0,speed);
     }
 
 }

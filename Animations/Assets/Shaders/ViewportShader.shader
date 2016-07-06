@@ -21,10 +21,11 @@
 		Pass
 		{
 			CGPROGRAM
-// Upgrade NOTE: excluded shader from DX11 and Xbox360 because it uses wrong array syntax (type[size] name)
-#pragma exclude_renderers d3d11 xbox360
 			#pragma vertex vert
 			#pragma fragment frag
+			#pragma target 3.0
+
+			#pragma exclude_renderers d3d11 xbox360 gles
 
 			#include "UnityCG.cginc"
 
@@ -121,7 +122,7 @@
 					float2 centeredCoords = float2((uv.x * 2.0 - 1.0), (uv.y * 2.0 - 1.0));
 					float4 temp = col;
 
-					for (float iter = 0; iter < _Repeat / 100; iter += .01){
+					for (float iter = 0; iter <  10; iter += 1){
 						float2 newCoords = uv + half2(_MainTex_TexelSize.x * floor(iter * 1000) / 10,
 													  _MainTex_TexelSize.y * floor(iter * 1000) / 10);
 
@@ -176,43 +177,9 @@
 				}
 			}
 
-			#define STEP 6
-
-			float GetVoronoiForPoint(float2 uv){
-				float2[STEP] pos = float2[STEP](float2(.6,.6), float2(.1,.1), float2(.8,.8), float2(.3,.1), float2(.9,.9), float2(.8,.1));
-				float4[STEP] coloring = float4[STEP](float4(1,1,1,1), float4(1,0,1,1), float4(1,1,0,1), float4(0,0,1,1), float4(1,0,0,1), float4(.5,.5,0,1));
-
-				float dist = 100;
-				float returnVal = 1;
-				for (int k = 0; k < STEP; k++){
-					float current = distance(pos[k]  + (_SinTime.w) * float2(sin(pos[k].x),sin(pos[k].y)), uv);
-					if (current < dist){
-						dist = current;
-						returnVal = STEP / k;
-					}
-				}
-
-				return returnVal;
-			}
-
-			float GetVoronoiDistance(float2 uv){
-				float2[STEP] pos = float2[STEP](float2(.6,.6), float2(.1,.1), float2(.8,.8), float2(.3,.1), float2(.9,.9), float2(.8,.1));
-
-				float dist = 1;
-				int index = 0;
-				for (int k = 0; k < STEP; k++){
-					float current = distance(pos[k] + (_SinTime.w) * float2(.1,.1), uv);
-					if (current < dist){
-						dist = current;
-						index = k;
-					}
-				}
-
-				return distance(pos[index], uv);
-			}
 
 			fixed4 swirl(float2 uv, float2 effectParams){
-				float doit = GetVoronoiForPoint(uv);
+				float doit = uv;
 
 				float theta = _Rotation + _Time.z * .5;
 
@@ -252,7 +219,7 @@
 				return o;
 			}
 
-			fixed4 frag (v2f i) : SV_Target {
+			/*fixed4 frag (v2f i) : SV_Target {
 				i.uv = floor(i.uv * _Crush) / _Crush;
 				fixed4 col = tex2D(_MainTex, i.uv);
 
@@ -266,16 +233,22 @@
 					}
 				}
 
-				col.xyz = lerp(col.xyz, shift(col.xyz, _Shift * GetVoronoiForPoint(i.uv)), GetVoronoiDistance(i.uv) * 10);
+				//col.xyz = lerp(col.xyz, shift(col.xyz, _Shift * GetVoronoiForPoint(i.uv)), GetVoronoiDistance(i.uv) * 10);
 
 				col = repeat(col, i.uv);
 
-				//col = dissolve(col, i.uv);
+				col = dissolve(col, i.uv);
 
 				col.xyz = lerp(col, paletteConversionB(col.r + col.g + col.b + _Time.y), _PaletteSwap);
 
+				col = 1;
+
 
 				return col;
+			}*/
+
+			fixed4 frag(v2f i) : SV_Target{
+				return 1;
 			}
 			ENDCG
 		}
